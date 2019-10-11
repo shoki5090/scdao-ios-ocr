@@ -30,12 +30,13 @@ class ExtractText ():
     def extract_text(self):
         """Extract text from an image using tesseract"""
         text = pytesseract.image_to_string(self.image)
-        print(text)
-        
+        # print(text)
+        return text
+
 
 if __name__ == "__main__":
-    test_image = ImageReader("./img/test1.jpg")
+    test_image = ImageReader("./img/test4.jpg")
     # test_image.show_image()
     text = ExtractText(test_image.image)
-    text.extract_text()
+    print(text.extract_text())
 
