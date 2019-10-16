@@ -21,7 +21,7 @@ def index():
             print('file not in request.files')
             return redirect('/failure')
         file = request.files['file']
-        print(file)
+        #print(file)
         if file.filename == '':
             flash('/failure')
             print('no file name')
