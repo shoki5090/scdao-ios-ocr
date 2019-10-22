@@ -1,4 +1,5 @@
 import os
+import json
 from extract_text.extract_text import *
 from flask import Flask, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
@@ -32,7 +33,9 @@ def index():
             test_image = ImageReader(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             text = ExtractText(test_image.image)
             #print(text.extract_text())
-            return text.extract_text()
+            txt = {'text': text.extract_text()}
+            txt_package = json.dumps(txt)
+            return txt_package
         else:
             print('File not valid')
             return redirect('failure')
