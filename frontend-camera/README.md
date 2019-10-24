@@ -9,3 +9,4 @@ $ npm start
 This should start a server / webpage
 
 Also, if you want to run this on a physical, you can download the EXPO client on App Store -> Scan the QR Code with iOS Camera App -> Open Link in Expo Client
+If ``npm start`` doesn't work, try ``expo start``. 
