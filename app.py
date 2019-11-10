@@ -1,6 +1,7 @@
 import os
 import json
 from extract_text.extract_text import *
+from extract_text.extract_fields import *
 from flask import Flask, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 
@@ -32,14 +33,24 @@ def index():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             test_image = ImageReader(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             text = ExtractText(test_image.image)
-            #print(text.extract_text())
-            txt = {'text': text.extract_text()}
-            txt_package = json.dumps(txt)
-            return txt_package
+            doc = text.extract_text()
+            #print(doc)
+            docket_num = find_docket_number(doc)
+            subject_name = find_full_name(doc)
+            dates = find_dates(doc)
+            #the following date variables assume all dates were recorded properly by the scan -- need to fix that assumption
+            date_of_birth = dates[0]
+            print("docket:", docket_num)
+            print("name:", subject_name)
+            print("dob:", date_of_birth)
+            fields = {'docket': docket_num, 'name': subject_name, 'dob': date_of_birth, 'text': doc}
+            #fields = {'text':doc}
+            fields_package = json.dumps(fields)
+            return fields_package
         else:
             print('File not valid')
             return redirect('failure')
-    return 'Hello'
+    return 'Please send a post request with your document picture'
 @app.route('/success')
 def uploaded():
     return 'File successfully uploaded'
