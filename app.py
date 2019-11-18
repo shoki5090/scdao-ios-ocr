@@ -1,5 +1,7 @@
 import os
 import json
+from bson import ObjectId
+from pymongo import MongoClient
 from extract_text.extract_text import *
 from extract_text.extract_fields import *
 from flask import Flask, request, redirect, url_for, flash
@@ -9,6 +11,10 @@ UPLOAD_FOLDER = 'uploads'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = os.urandom(24)
+
+client = MongoClient("mongodb://127.0.0.1:27017")
+db = client.COURT_CASES
+cases = db.cases
 
 #allowed_file adapted from http://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -43,7 +49,8 @@ def index():
             print("docket:", docket_num)
             print("name:", subject_name)
             print("dob:", date_of_birth)
-            fields = {'docket': docket_num, 'name': subject_name, 'dob': date_of_birth, 'text': doc}
+            fields = {'_id': docket_num,'docket': docket_num, 'name': subject_name, 'dob': date_of_birth, 'text': doc}
+            cases.insert_one(fields)
             #fields = {'text':doc}
             fields_package = json.dumps(fields)
             return fields_package
