@@ -177,15 +177,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1R6-Pu-Dh6">
-                                <rect key="frame" x="135" y="389" width="164" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1R6-Pu-Dh6">
+                                <rect key="frame" x="124" y="582" width="179" height="70"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Access Library">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="openPhotoLibraryButton:" destination="UPC-P9-Vxq" eventType="touchUpInside" id="aE7-en-geR"/>
-                                    <action selector="openPhotoLibraryButton:" destination="04Y-kl-RKr" eventType="touchUpInside" id="kMK-9h-VI0"/>
+                                    <action selector="showAlbum:" destination="04Y-kl-RKr" eventType="touchUpInside" id="aE6-RX-KJM"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="arrow.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rmR-2X-0vx">
@@ -201,7 +200,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waf-pW-W8W">
-                                <rect key="frame" x="179" y="583" width="56" height="12"/>
+                                <rect key="frame" x="150" y="660" width="109" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="12" id="r3o-Hs-77W"/>
                                 </constraints>
@@ -210,18 +209,28 @@
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="saveButtWithSender:" destination="04Y-kl-RKr" eventType="touchUpInside" id="gYX-TQ-6Jd"/>
+                                    <action selector="savePicture:" destination="04Y-kl-RKr" eventType="touchUpInside" id="2wi-KI-RhV"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="STJ-ph-bhO">
+                                <rect key="frame" x="20" y="44" width="382" height="450"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6x-6d-cua">
+                                <rect key="frame" x="20" y="732" width="374" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-lx-URn">
-                                <rect key="frame" x="131" y="297" width="173" height="42"/>
+                                <rect key="frame" x="112" y="502" width="191" height="80"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Scan a document">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="openCameraButton:" destination="UPC-P9-Vxq" eventType="touchUpInside" id="ITt-2a-t0W"/>
-                                    <action selector="openCameraButton:" destination="04Y-kl-RKr" eventType="touchUpInside" id="wqa-47-GIA"/>
+                                    <action selector="startCamera:" destination="04Y-kl-RKr" eventType="touchUpInside" id="avT-gl-LVt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -239,9 +248,12 @@
                         <viewLayoutGuide key="safeArea" id="dwc-KO-4mP"/>
                     </view>
                     <navigationItem key="navigationItem" id="WqQ-Qh-Sns"/>
+                    <connections>
+                        <outlet property="cameraView" destination="STJ-ph-bhO" id="lk8-Fl-cfG"/>
+                        <outlet property="mylabel" destination="o6x-6d-cua" id="Msw-n8-K7s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjV-dO-ma3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="UPC-P9-Vxq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1569.5652173913045" y="424.55357142857139"/>
         </scene>
