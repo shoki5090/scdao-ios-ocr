@@ -41,6 +41,7 @@ class ViewController: UIViewController,
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
     }
+//     Save and getdocument using this article : https://www.hackingwithswift.com/example-code/media/how-to-save-a-uiimage-to-a-file-using-jpegdata-and-pngdata
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
