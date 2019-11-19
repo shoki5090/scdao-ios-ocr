@@ -1,7 +1,6 @@
 //
 //  ViewController.swift
 //  test
-//
 //  Created by Masayoshi Iwasa on 11/9/19.
 //  Copyright © 2019 Masayoshi Iwasa. All rights reserved.
 //
@@ -36,17 +35,28 @@ class ViewController: UIViewController,
         }
     }
     
-//    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-//        imagePicked.image = image
-//        dismiss(animated:true, completion: nil)
-//    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    internal func imagePickerController(_ picker: UIImagePickerController,
+       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard (info[.originalImage] as? UIImage) != nil else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
     }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    @IBAction func saveButt(sender: AnyObject) {
+        if let image = UIImage(named: "example.png") {
+            if let data = image.pngData() {
+                let filename = getDocumentsDirectory().appendingPathComponent("copy.png")
+                try? data.write(to: filename)
+            }
+        }
+    }
+    
+    
 
 
 }
