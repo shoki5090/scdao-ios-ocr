@@ -86,15 +86,15 @@ UINavigationControllerDelegate{
         
     }
     
-    // カメラの撮影開始
+    // Open camera
     @IBAction func startCamera(_ sender : AnyObject) {
         
         let sourceType:UIImagePickerController.SourceType =
             UIImagePickerController.SourceType.camera
-        // カメラが利用可能かチェック
+        // check if camera is available
         if UIImagePickerController.isSourceTypeAvailable(
             UIImagePickerController.SourceType.camera){
-            // インスタンスの作成
+            // initiate camera picker
             let cameraPicker = UIImagePickerController()
             cameraPicker.sourceType = sourceType
             cameraPicker.delegate = self
@@ -107,7 +107,7 @@ UINavigationControllerDelegate{
         }
     }
     
-    //　撮影が完了時した時に呼ばれる
+    //　call this after taking a photo
     func imagePickerController(_ imagePicker: UIImagePickerController,
             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         
@@ -119,13 +119,13 @@ UINavigationControllerDelegate{
             
         }
 
-        //閉じる処理
+        //closing
         imagePicker.dismiss(animated: true, completion: nil)
         mylabel?.text = "Tap the [Save] to save a picture"
         
     }
     
-    // 撮影がキャンセルされた時に呼ばれる
+    // call this when cancelled
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
         mylabel?.text = "Canceled"
@@ -149,7 +149,7 @@ UINavigationControllerDelegate{
         
     }
     
-    // 書き込み完了結果の受け取り
+    // result of writting image
     @objc func image(_ image: UIImage,
                      didFinishSavingWithError error: NSError!,
                      contextInfo: UnsafeMutableRawPointer) {
@@ -163,14 +163,14 @@ UINavigationControllerDelegate{
         }
     }
     
-    // アルバムを表示
+    // show album
     @IBAction func showAlbum(_ sender : AnyObject) {
         let sourceType:UIImagePickerController.SourceType =
             UIImagePickerController.SourceType.photoLibrary
         
         if UIImagePickerController.isSourceTypeAvailable(
             UIImagePickerController.SourceType.photoLibrary){
-            // インスタンスの作成
+            // initiate camera picker
             let cameraPicker = UIImagePickerController()
             cameraPicker.sourceType = sourceType
             cameraPicker.delegate = self
