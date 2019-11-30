@@ -7,5 +7,10 @@
 2. Clone our repository to your computer
 3. Install the required python libraries: 'pip install -r requirements.txt'
 4. Run app.py to run the server
-5. The '/' route currently accepts POST requests with image files
+5. The '/CC' route currently accepts POST requests with image files for criminal complaint forms
 6. To send a post request with an image via the terminal for testing: 'curl -F "file=@{Your file} localhost:5000"
+
+
+# Routes:
+/CC for criminal complaint form
+/ACC for application for criminal complaint form (Currently extracting name and text)
