@@ -117,5 +117,44 @@ UINavigationControllerDelegate{
         }
         
     }
+    
+    
+    @IBAction func upload(sender: AnyObject) {
+        if let image = self.cameraView.image {
+            let imageData = image.jpegData(compressionQuality: 1.0)
 
+            let urlString = "YOUR_URL_HERE"
+            let session = URLSession(configuration: URLSessionConfiguration.default)
+            
+            let mutableURLRequest = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
+            
+            mutableURLRequest.httpMethod = "POST"
+            
+            let boundaryConstant = "----------------12345";
+            let contentType = "multipart/form-data;boundary=" + boundaryConstant
+            mutableURLRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
+            
+            // create upload data to send
+            let uploadData = NSMutableData()
+            
+            // add image
+            uploadData.append("\r\n--\(boundaryConstant)\r\n".data(using: String.Encoding.utf8)!)
+            uploadData.append("Content-Disposition: form-data; name=\"picture\"; filename=\"file.png\"\r\n".data(using: String.Encoding.utf8)!)
+            uploadData.append("Content-Type: image/png\r\n\r\n".data(using: String.Encoding.utf8)!)
+            uploadData.append(imageData!)
+            uploadData.append("\r\n--\(boundaryConstant)--\r\n".data(using: String.Encoding.utf8)!)
+            
+            mutableURLRequest.httpBody = uploadData as Data
+            
+            
+            let task = session.dataTask(with: mutableURLRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
+                if error == nil {
+                    // Image uploaded
+                }
+            })
+            
+            task.resume()
+            
+        }
+    }
 }
