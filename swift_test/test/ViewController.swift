@@ -14,7 +14,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet var cameraView : UIImageView!
     
     @IBOutlet weak var mylabel: UILabel?
-//    Dropdown menu for document types
+    //    Dropdown menu for document types
     @IBOutlet weak var documentType: UIPickerView?
     
     var pickerData: [String] = [String]()
@@ -22,8 +22,10 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mylabel?.text = "Tap the Scan Document to scan scan a ducment"
+        mylabel?.numberOfLines = 2
+        mylabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+
+        mylabel?.text = "Tap Capture Image or Access Library first, then choose type of document, and Scan Document"
         // Connect data:
         documentType?.delegate = self
         documentType?.dataSource = self
@@ -42,14 +44,9 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//        return pickerData[row]
         return NSAttributedString(string: pickerData[row], attributes: [NSAttributedString.Key.font:UIFont(name: "Georgia", size: 30.0)!,NSAttributedString.Key.foregroundColor:UIColor.groupTableViewBackground])
     }
     
-//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//
-//        return NSAttributedString(string: "Your Text", attributes: [NSAttributedString.Key.foregroundColor:UIColor.red])
-//    }
     
     // Open camera
     @IBAction func startCamera(_ sender : AnyObject) {
@@ -110,7 +107,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
 
         //closing
         imagePicker.dismiss(animated: true, completion: nil)
-        mylabel?.text = "Tap the [Save] to save a picture"
+        mylabel?.text = "Tap Scan Image once the image is ready!"
         
     }
     
