@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EWy-pd-TbW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EWy-pd-TbW">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -154,8 +154,8 @@
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="savePicture:" destination="04Y-kl-RKr" eventType="touchUpInside" id="2wi-KI-RhV"/>
-                                    <segue destination="raA-Ru-Uvk" kind="presentation" modalPresentationStyle="fullScreen" id="yvJ-8C-Auu"/>
+                                    <action selector="uploadWithSender:" destination="04Y-kl-RKr" eventType="touchUpInside" id="Q6e-ss-pVD"/>
+                                    <segue destination="raA-Ru-Uvk" kind="presentation" identifier="ShowDoc" modalPresentationStyle="fullScreen" id="yvJ-8C-Auu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpa-nU-juk">
@@ -245,7 +245,7 @@
         <!--Title-->
         <scene sceneID="LGY-4t-fSZ">
             <objects>
-                <viewController id="raA-Ru-Uvk" sceneMemberID="viewController">
+                <viewController id="raA-Ru-Uvk" customClass="ViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bc4-wF-eYa">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -306,7 +306,6 @@
         <image name="arrow.left" catalog="system" width="64" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yvJ-8C-Auu"/>
         <segue reference="rU4-vt-9sr"/>
         <segue reference="ueL-6l-shf"/>
     </inferredMetricsTieBreakers>

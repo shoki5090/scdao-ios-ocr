@@ -249,6 +249,9 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
             }
         }).resume()
 
+        
+    
+
 //    if let image = self.cameraView.image {
 //        let imageData = image.jpegData(compressionQuality: 1.0)
 //
