@@ -18,7 +18,8 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet weak var documentType: UIPickerView?
     
     var pickerData: [String] = [String]()
-    
+    var respondJSON : String = "";
+    var pickedDocument : String = "";
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
         documentType?.dataSource = self
         
         // Input the data into the array
-        pickerData = ["Application for Criminal Complaint (Court)", "Application for Criminal Complaint (Justice Department)", "Police Department Arrest Booking Form", "Arrest Report", "Offense/Incident Report", "Supplemental Report", "Criminal Complaint", "Incident Report", "Court Activity Record Information"]
+        pickerData = ["-","Application for Criminal Complaint (Court)", "Application for Criminal Complaint (Justice Department)", "Police Department Arrest Booking Form", "Arrest Report", "Offense/Incident Report", "Supplemental Report", "Criminal Complaint", "Incident Report", "Court Activity Record Information"]
         
     }
     
@@ -54,6 +55,10 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
         return NSAttributedString(string: pickerData[row], attributes: [NSAttributedString.Key.font:UIFont(name: "Georgia", size: 30.0)!,NSAttributedString.Key.foregroundColor:UIColor.white])
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.pickedDocument = pickerData[row]
+        print(self.pickedDocument)
+    }
     
     // Open camera
     @IBAction func startCamera(_ sender : AnyObject) {
@@ -86,6 +91,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
             
             // get screen Size
 
+
             let screenWidth = self.view.bounds.width
             let screenHeight = self.view.bounds.height
             
@@ -107,6 +113,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
             // centering the image
             cameraView.center = CGPoint(x:screenWidth/2, y:screenHeight/3)
             
+
             cameraView.image = pickedImage
         }
 
@@ -179,54 +186,50 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
         
     }
     
+    func routing() -> String{
+        let picked = self.pickedDocument
+        if picked == "Criminal Complaint" {
+            return "http://155.41.0.60:5000/CC"
+        } else if picked == "Police Department Arrest Booking Form"{
+            return "http://155.41.0.60:5000/ABF"
+        } else {
+            return ""
+        }
+    }
     
     @IBAction func upload(sender: AnyObject) {
         
         // the image in UIImage type
-        guard let image = cameraView.image else { return  }
-
-        let filename = "file.png"
+        guard let image = cameraView.image?.jpegData(compressionQuality: 1.0) else { return  }
+        let filename = "file.jpeg"
 
         // generate boundary string using a unique per-app string
         let boundary = UUID().uuidString
 
-        let fieldName = "reqtype"
-        let fieldValue = "fileupload"
-
-        let fieldName2 = "userhash"
-        let fieldValue2 = "caa3dce4fcb36cfdf9258ad9c"
 
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
 
         // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: URL(string: "http://172.20.10.8:5000/CC")!)
+        let routeUrl = routing()
+        var urlRequest = URLRequest(url: URL(string: routeUrl)!)
         urlRequest.httpMethod = "POST"
 
         // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
         // And the boundary is also set here
-        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("multipart/form-data;boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
         var data = Data()
 
-        // Add the reqtype field and its value to the raw http request data
-        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"\(fieldName)\"\r\n\r\n".data(using: .utf8)!)
-        data.append("\(fieldValue)".data(using: .utf8)!)
-
-        // Add the userhash field and its value to the raw http reqyest data
-        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"\(fieldName2)\"\r\n\r\n".data(using: .utf8)!)
-        data.append("\(fieldValue2)".data(using: .utf8)!)
 
         // Add the image data to the raw http request data
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"fileToUpload\"; file=\"\(filename)\"\r\n".data(using: .utf8)!)
-        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
-        data.append(image.pngData()!)
+        data.append("Content-Disposition: form-data;name=\"file\";filename=\"\(filename)\"\r\n".data(using: .utf8)!)
+        data.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+        data.append(image)
 
         data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-
+        print(routeUrl)
         // Send a POST request to the URL, with the data we created earlier
         session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
             
@@ -240,6 +243,8 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
             }
             
             if let responseString = String(data: responseData, encoding: .utf8) {
+                
+                self.respondJSON = responseString;
                 print("uploaded to: \(responseString)")
             }
         }).resume()
