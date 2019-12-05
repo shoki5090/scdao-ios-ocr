@@ -23,6 +23,12 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // overrideUserInterfaceStyle is available with iOS 13
+        if #available(iOS 13.0, *) {
+               // Always adopt a light interface style.
+               overrideUserInterfaceStyle = .light
+        }
+        
         mylabel?.numberOfLines = 2
         mylabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
 
@@ -45,7 +51,8 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: pickerData[row], attributes: [NSAttributedString.Key.font:UIFont(name: "Georgia", size: 30.0)!,NSAttributedString.Key.foregroundColor:UIColor.groupTableViewBackground])
+        
+        return NSAttributedString(string: pickerData[row], attributes: [NSAttributedString.Key.font:UIFont(name: "Georgia", size: 30.0)!,NSAttributedString.Key.foregroundColor:UIColor.white])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -83,29 +90,29 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
             
             
             // get screen Size
+
+
             let screenWidth = self.view.bounds.width
             let screenHeight = self.view.bounds.height
-
-
-
+            
+            
+            
             // image width and height
             let width = cameraView.bounds.size.width
             let height = cameraView.bounds.size.height
-
-
+            
+            
             // adjust image size to the screen size
             let scale = screenWidth / width
-
-//            let original_orientation = UIImage.Orientation.self
-
+            
             let rect:CGRect = CGRect(x:0, y:0, width:width*scale, height:height*scale)
-
+            
             // fit cameraView frame to CGRect
             cameraView.frame = rect;
-
-
+            
             // centering the image
             cameraView.center = CGPoint(x:screenWidth/2, y:screenHeight/3)
+            
 
             cameraView.image = pickedImage
         }
@@ -139,7 +146,6 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
             mylabel?.text = "image Failed !"
         }
     }
-    
     
     
     
