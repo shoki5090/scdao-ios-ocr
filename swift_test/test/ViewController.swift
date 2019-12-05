@@ -85,6 +85,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
             
             
             // get screen Size
+
             let screenWidth = self.view.bounds.width
             let screenHeight = self.view.bounds.height
             
@@ -148,10 +149,10 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
         
         if error != nil {
             print(error.code)
-            mylabel?.text = "Save Failed !"
+            mylabel?.text = "Scan Failed !"
         }
         else{
-            mylabel?.text = "Save Succeeded"
+            mylabel?.text = "Scan Sent"
         }
     }
     
@@ -180,41 +181,107 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
     
     
     @IBAction func upload(sender: AnyObject) {
-        if let image = self.cameraView.image {
-            let imageData = image.jpegData(compressionQuality: 1.0)
+        
+        // the image in UIImage type
+        guard let image = cameraView.image else { return  }
 
-            let urlString = "YOUR_URL_HERE"
-            let session = URLSession(configuration: URLSessionConfiguration.default)
+        let filename = "file.png"
+
+        // generate boundary string using a unique per-app string
+        let boundary = UUID().uuidString
+
+        let fieldName = "reqtype"
+        let fieldValue = "fileupload"
+
+        let fieldName2 = "userhash"
+        let fieldValue2 = "caa3dce4fcb36cfdf9258ad9c"
+
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+
+        // Set the URLRequest to POST and to the specified URL
+        var urlRequest = URLRequest(url: URL(string: "http://172.20.10.8:5000/CC")!)
+        urlRequest.httpMethod = "POST"
+
+        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
+        // And the boundary is also set here
+        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        var data = Data()
+
+        // Add the reqtype field and its value to the raw http request data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"\(fieldName)\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(fieldValue)".data(using: .utf8)!)
+
+        // Add the userhash field and its value to the raw http reqyest data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"\(fieldName2)\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(fieldValue2)".data(using: .utf8)!)
+
+        // Add the image data to the raw http request data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"fileToUpload\"; file=\"\(filename)\"\r\n".data(using: .utf8)!)
+        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
+        data.append(image.pngData()!)
+
+        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+
+        // Send a POST request to the URL, with the data we created earlier
+        session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
             
-            let mutableURLRequest = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
+            if(error != nil){
+                print("\(error!.localizedDescription)")
+            }
             
-            mutableURLRequest.httpMethod = "POST"
+            guard let responseData = responseData else {
+                print("no response data")
+                return
+            }
             
-            let boundaryConstant = "----------------12345";
-            let contentType = "multipart/form-data;boundary=" + boundaryConstant
-            mutableURLRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
-            
-            // create upload data to send
-            let uploadData = NSMutableData()
-            
-            // add image
-            uploadData.append("\r\n--\(boundaryConstant)\r\n".data(using: String.Encoding.utf8)!)
-            uploadData.append("Content-Disposition: form-data; name=\"picture\"; filename=\"file.png\"\r\n".data(using: String.Encoding.utf8)!)
-            uploadData.append("Content-Type: image/png\r\n\r\n".data(using: String.Encoding.utf8)!)
-            uploadData.append(imageData!)
-            uploadData.append("\r\n--\(boundaryConstant)--\r\n".data(using: String.Encoding.utf8)!)
-            
-            mutableURLRequest.httpBody = uploadData as Data
-            
-            
-            let task = session.dataTask(with: mutableURLRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
-                if error == nil {
-                    // Image uploaded
-                }
-            })
-            
-            task.resume()
-            
-        }
+            if let responseString = String(data: responseData, encoding: .utf8) {
+                print("uploaded to: \(responseString)")
+            }
+        }).resume()
+
+//    if let image = self.cameraView.image {
+//        let imageData = image.jpegData(compressionQuality: 1.0)
+//
+//        let urlString = "http://172.20.10.8:5000/CC"
+//        let session = URLSession(configuration: URLSessionConfiguration.default)
+//
+//        let mutableURLRequest = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
+//
+//        mutableURLRequest.httpMethod = "POST"
+//
+//        let boundaryConstant = UUID().uuidString;
+//        let contentType = "multipart/form-data;boundary=" + boundaryConstant
+//        mutableURLRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
+//
+//        // create upload data to send
+//        let uploadData = NSMutableData()
+//
+//        // add image
+//        uploadData.append("\r\n--\(boundaryConstant)\r\n".data(using: String.Encoding.utf8)!)
+//        uploadData.append("Content-Disposition: form-data; name=\"picture\"; file=\"file.jpeg\"\r\n".data(using: String.Encoding.utf8)!)
+//        uploadData.append("Content-Type: image/jpeg\r\n\r\n".data(using: String.Encoding.utf8)!)
+//        uploadData.append(imageData!)
+//        uploadData.append("\r\n--\(boundaryConstant)--\r\n".data(using: String.Encoding.utf8)!)
+//
+//        mutableURLRequest.httpBody = uploadData as Data
+//
+//
+//        let task = session.dataTask(with: mutableURLRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
+//            if error == nil {
+//                // Image uploaded
+//                print("SUCCESS")
+//            }
+//        })
+//
+//        task.resume()
+//
+//    }
+    
+    
     }
 }
