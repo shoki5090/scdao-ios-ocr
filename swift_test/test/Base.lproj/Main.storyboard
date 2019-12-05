@@ -10,18 +10,11 @@
         <!--View Controller-->
         <scene sceneID="z15-4h-ygg">
             <objects>
-                <viewController id="EWy-pd-TbW" sceneMemberID="viewController">
+                <viewController id="EWy-pd-TbW" customClass="ViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bOq-dN-PwZ">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqM-QQ-m48">
-                                <rect key="frame" x="365" y="723" width="104" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Log Out">
-                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCDAO OCR Scanner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jx7-xi-DDQ">
                                 <rect key="frame" x="184.5" y="267" width="465" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
@@ -38,7 +31,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="G1T-Vn-8Kn" kind="presentation" modalPresentationStyle="fullScreen" id="Oov-DR-UAl"/>
+                                    <action selector="openURL:" destination="EWy-pd-TbW" eventType="touchUpInside" id="Xdq-cH-yqY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIs-qg-RCH">
@@ -59,8 +52,6 @@
                             <constraint firstItem="Bge-vR-phx" firstAttribute="centerY" secondItem="bOq-dN-PwZ" secondAttribute="centerY" constant="75" id="M9T-Zg-OrI"/>
                             <constraint firstItem="jx7-xi-DDQ" firstAttribute="centerX" secondItem="bOq-dN-PwZ" secondAttribute="centerX" id="Oau-Vv-5ah"/>
                             <constraint firstItem="jx7-xi-DDQ" firstAttribute="centerY" secondItem="bOq-dN-PwZ" secondAttribute="centerY" constant="-300" id="PX8-o7-8Cg"/>
-                            <constraint firstItem="KqM-QQ-m48" firstAttribute="centerY" secondItem="bOq-dN-PwZ" secondAttribute="centerY" constant="150" id="Vkv-55-fmL"/>
-                            <constraint firstItem="KqM-QQ-m48" firstAttribute="centerX" secondItem="bOq-dN-PwZ" secondAttribute="centerX" id="sIT-uT-WS9"/>
                             <constraint firstItem="pIs-qg-RCH" firstAttribute="centerY" secondItem="bOq-dN-PwZ" secondAttribute="centerY" id="wNa-Lf-jGB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rVH-mz-dob"/>
@@ -74,7 +65,7 @@
         <!--View Controller-->
         <scene sceneID="aqN-Iu-qiT">
             <objects>
-                <viewController id="G1T-Vn-8Kn" sceneMemberID="viewController">
+                <viewController id="G1T-Vn-8Kn" customClass="ViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cmr-xE-OJv">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,11 +91,17 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQ3-Xj-wzZ">
+                                <rect key="frame" x="357.5" y="582" width="119" height="30"/>
+                                <state key="normal" title="Access Database"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.17092397810000001" blue="0.37457227710000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="UQ3-Xj-wzZ" firstAttribute="centerX" secondItem="uwl-gT-TqW" secondAttribute="centerX" id="hv4-YZ-afY"/>
                             <constraint firstItem="uwl-gT-TqW" firstAttribute="centerY" secondItem="cmr-xE-OJv" secondAttribute="centerY" constant="-300" id="q6b-Ax-aMD"/>
                             <constraint firstItem="uwl-gT-TqW" firstAttribute="centerX" secondItem="cmr-xE-OJv" secondAttribute="centerX" id="zgr-hL-BiR"/>
+                            <constraint firstItem="UQ3-Xj-wzZ" firstAttribute="centerY" secondItem="cmr-xE-OJv" secondAttribute="centerY" id="zqN-cA-PIo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Mf-pX-UZu"/>
                     </view>
@@ -112,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Gf-05-STb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1687" y="-325"/>
+            <point key="canvasLocation" x="1686.3309352517988" y="-325.1256281407035"/>
         </scene>
         <!--Title-->
         <scene sceneID="Lpy-t9-stX">
@@ -154,8 +151,8 @@
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="uploadWithSender:" destination="04Y-kl-RKr" eventType="touchUpInside" id="Q6e-ss-pVD"/>
-                                    <segue destination="raA-Ru-Uvk" kind="presentation" identifier="ShowDoc" modalPresentationStyle="fullScreen" id="yvJ-8C-Auu"/>
+                                    <action selector="savePicture:" destination="04Y-kl-RKr" eventType="touchUpInside" id="2wi-KI-RhV"/>
+                                    <segue destination="raA-Ru-Uvk" kind="presentation" identifier="showDoc" modalPresentationStyle="fullScreen" id="yvJ-8C-Auu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpa-nU-juk">
@@ -245,7 +242,7 @@
         <!--Title-->
         <scene sceneID="LGY-4t-fSZ">
             <objects>
-                <viewController id="raA-Ru-Uvk" customClass="ViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="raA-Ru-Uvk" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bc4-wF-eYa">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

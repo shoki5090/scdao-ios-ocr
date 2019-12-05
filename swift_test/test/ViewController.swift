@@ -4,10 +4,11 @@
 //  Copyright © 2019 Masayoshi Iwasa. All rights reserved.
 //
 import UIKit
-
+import SafariServices
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
+UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
+    SFSafariViewControllerDelegate
 {
     
     
@@ -20,6 +21,11 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
     var pickerData: [String] = [String]()
     var respondJSON : String = "";
     var pickedDocument : String = "";
+    var fixedJSON : String = "";
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +64,23 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.pickedDocument = pickerData[row]
         print(self.pickedDocument)
+    }
+    
+    @IBAction func openURL(_ sender: Any) {
+        // check if website exists
+        guard let url = URL(string: "https://apple.com") else {
+            return
+            
+        }
+
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true, completion: nil)
+        
+        safariVC.delegate = self
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     // Open camera
@@ -189,13 +212,87 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
     func routing() -> String{
         let picked = self.pickedDocument
         if picked == "Criminal Complaint" {
-            return "http://155.41.0.60:5000/CC"
+            return "https://155.41.0.60:5000/CC"
         } else if picked == "Police Department Arrest Booking Form"{
-            return "http://155.41.0.60:5000/ABF"
+            return "https://155.41.0.60:5000/ABF"
         } else {
-            return ""
+            return "https://155.41.0.60:5000/"
         }
     }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
+    
+    func convertToJson(from object:Any) -> String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
+            return nil
+        }
+        return String(data: data, encoding: String.Encoding.utf8)
+    }
+    @IBAction func uploadFixed(sender: AnyObject){
+        guard let image = cameraView.image?.jpegData(compressionQuality: 0.8) else { return  }
+        let filename = "file.jpeg"
+        let boundary = UUID().uuidString
+
+
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+
+        // Set the URLRequest to POST and to the specified URL
+        var urlRequest = URLRequest(url: URL(string: "http://155.41.0.60:5000/confirm_CC")!)
+        urlRequest.httpMethod = "POST"
+
+        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
+        // And the boundary is also set here
+        urlRequest.setValue("multipart/form-data;boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        var data = Data()
+        
+        let json = convertToJson(from: self.fixedJSON)
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"data\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(String(describing: json))\r\n".data(using: .utf8)!)
+        
+
+        // Add the image data to the raw http request data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data;name=\"file\";filename=\"\(filename)\"\r\n".data(using: .utf8)!)
+        data.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+        data.append(image)
+
+        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        print("")
+        // Send a POST request to the URL, with the data we created earlier
+        session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
+            
+            if(error != nil){
+                print("\(error!.localizedDescription)")
+            }
+            
+            guard let responseData = responseData else {
+                print("no response data")
+                return
+            }
+            
+            if let responseString = String(data: responseData, encoding: .utf8) {
+                
+                self.respondJSON = responseString;
+                print("uploaded to: \(responseString)")
+            }
+        }).resume()
+        
+        
+    }
+    
+    
     
     @IBAction func upload(sender: AnyObject) {
         
@@ -231,6 +328,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
         data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
         print(routeUrl)
         // Send a POST request to the URL, with the data we created earlier
+        mylabel?.text = "Uploading..."
         session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
             
             if(error != nil){
@@ -248,6 +346,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource
                 print("uploaded to: \(responseString)")
             }
         }).resume()
+        
 
         
     
