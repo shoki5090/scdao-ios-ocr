@@ -212,11 +212,11 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
     func routing() -> String{
         let picked = self.pickedDocument
         if picked == "Criminal Complaint" {
-            return "https://155.41.0.60:5000/CC"
+            return "YOUR_URL/CC"
         } else if picked == "Police Department Arrest Booking Form"{
-            return "https://155.41.0.60:5000/ABF"
+            return "YOUR_URL/ABF"
         } else {
-            return "https://155.41.0.60:5000/"
+            return "YOUR_URL"
         }
     }
     
@@ -247,7 +247,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
         let session = URLSession(configuration: config)
 
         // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: URL(string: "http://155.41.0.60:5000/confirm_CC")!)
+        var urlRequest = URLRequest(url: URL(string: "YOUR_URL/confirm_CC")!)
         urlRequest.httpMethod = "POST"
 
         // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
