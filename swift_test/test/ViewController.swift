@@ -68,7 +68,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
     
     @IBAction func openURL(_ sender: Any) {
         // check if website exists
-        guard let url = URL(string: "https://apple.com") else {
+        guard let url = URL(string: "http://localhost:5000/all_cases") else {
             return
             
         }
@@ -212,11 +212,11 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
     func routing() -> String{
         let picked = self.pickedDocument
         if picked == "Criminal Complaint" {
-            return "YOUR_URL/CC"
+            return "http://localhost:5000/CC"
         } else if picked == "Police Department Arrest Booking Form"{
-            return "YOUR_URL/ABF"
+            return "http://localhost:5000/ABF"
         } else {
-            return "YOUR_URL"
+            return "http://localhost:5000"
         }
     }
     
@@ -247,7 +247,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
         let session = URLSession(configuration: config)
 
         // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: URL(string: "YOUR_URL/confirm_CC")!)
+        var urlRequest = URLRequest(url: URL(string: "http://localhost:5000/confirm_CC")!)
         urlRequest.httpMethod = "POST"
 
         // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
