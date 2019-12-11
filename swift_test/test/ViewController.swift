@@ -8,15 +8,20 @@ import SafariServices
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
-    SFSafariViewControllerDelegate
+    SFSafariViewControllerDelegate,UITextFieldDelegate
 {
     
     
     @IBOutlet var cameraView : UIImageView!
     
+    @IBOutlet weak var resultLabel: UILabel!
+    
     @IBOutlet weak var mylabel: UILabel?
     //    Dropdown menu for document types
     @IBOutlet weak var documentType: UIPickerView?
+    
+    
+//    @IBOutlet weak var textView: UITextView?
     
     var pickerData: [String] = [String]()
     var respondJSON : String = "";
@@ -43,8 +48,24 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
         documentType?.delegate = self
         documentType?.dataSource = self
         
+//        textView?.isSelectable = true
+//        textView?.isEditable = false
+        
+        
+//        listenforchange()
+//        if respondJSON != "" {
+//            textView?.text = respondJSON
+//        }
+//        else{
+//            textView?.text = "Loading..."
+//        }
+        
+        resultLabel?.text = "Completed!"
+        
         // Input the data into the array
         pickerData = ["-","Application for Criminal Complaint (Court)", "Application for Criminal Complaint (Justice Department)", "Police Department Arrest Booking Form", "Arrest Report", "Offense/Incident Report", "Supplemental Report", "Criminal Complaint", "Incident Report", "Court Activity Record Information"]
+        
+        
         
     }
     
@@ -68,7 +89,8 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
     
     @IBAction func openURL(_ sender: Any) {
         // check if website exists
-        guard let url = URL(string: "https://apple.com") else {
+        let ip = "http://192.168.43.72:5000"
+        guard let url = URL(string: "\(ip)/all_cases") else {
             return
             
         }
@@ -211,12 +233,13 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
     
     func routing() -> String{
         let picked = self.pickedDocument
+        let iproute = "http://192.168.43.72:5000"
         if picked == "Criminal Complaint" {
-            return "https://155.41.0.60:5000/CC"
+            return "\(iproute)/CC"
         } else if picked == "Police Department Arrest Booking Form"{
-            return "https://155.41.0.60:5000/ABF"
+            return "\(iproute)/ABF"
         } else {
-            return "https://155.41.0.60:5000/"
+            return "\(iproute)"
         }
     }
     
@@ -247,7 +270,7 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
         let session = URLSession(configuration: config)
 
         // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: URL(string: "http://155.41.0.60:5000/confirm_CC")!)
+        var urlRequest = URLRequest(url: URL(string: "http://192.168.43.72:5000/confirm_CC")!)
         urlRequest.httpMethod = "POST"
 
         // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
@@ -344,51 +367,25 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
                 
                 self.respondJSON = responseString;
                 print("uploaded to: \(responseString)")
+//                self.textView?.text = responseString
+//                self.textView?.insertText(self.respondJSON)
+                
             }
         }).resume()
         
-
         
+    }
     
-
-//    if let image = self.cameraView.image {
-//        let imageData = image.jpegData(compressionQuality: 1.0)
-//
-//        let urlString = "http://172.20.10.8:5000/CC"
-//        let session = URLSession(configuration: URLSessionConfiguration.default)
-//
-//        let mutableURLRequest = NSMutableURLRequest(url: NSURL(string: urlString)! as URL)
-//
-//        mutableURLRequest.httpMethod = "POST"
-//
-//        let boundaryConstant = UUID().uuidString;
-//        let contentType = "multipart/form-data;boundary=" + boundaryConstant
-//        mutableURLRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
-//
-//        // create upload data to send
-//        let uploadData = NSMutableData()
-//
-//        // add image
-//        uploadData.append("\r\n--\(boundaryConstant)\r\n".data(using: String.Encoding.utf8)!)
-//        uploadData.append("Content-Disposition: form-data; name=\"picture\"; file=\"file.jpeg\"\r\n".data(using: String.Encoding.utf8)!)
-//        uploadData.append("Content-Type: image/jpeg\r\n\r\n".data(using: String.Encoding.utf8)!)
-//        uploadData.append(imageData!)
-//        uploadData.append("\r\n--\(boundaryConstant)--\r\n".data(using: String.Encoding.utf8)!)
-//
-//        mutableURLRequest.httpBody = uploadData as Data
-//
-//
-//        let task = session.dataTask(with: mutableURLRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
-//            if error == nil {
-//                // Image uploaded
-//                print("SUCCESS")
+    
+//    func listenforchange() {
+//        print("listening...")
+//        DispatchQueue.main.async {
+//            if self.respondJSON != "" {
+//                self.textView?.text = self.respondJSON
 //            }
-//        })
-//
-//        task.resume()
-//
+//        }
+        
+        
 //    }
     
-    
-    }
 }

@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7837018623774C2700D7CE9E /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7837018623774C2700D7CE9E /* SCDAO OCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SCDAO OCR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7837018923774C2700D7CE9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7837018B23774C2700D7CE9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7837018D23774C2700D7CE9E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		7837018723774C2700D7CE9E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7837018623774C2700D7CE9E /* test.app */,
+				7837018623774C2700D7CE9E /* SCDAO OCR.app */,
 				7837019C23774C2800D7CE9E /* testTests.xctest */,
 				783701A723774C2800D7CE9E /* testUITests.xctest */,
 			);
@@ -145,7 +145,7 @@
 			);
 			name = test;
 			productName = test;
-			productReference = 7837018623774C2700D7CE9E /* test.app */;
+			productReference = 7837018623774C2700D7CE9E /* SCDAO OCR.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7837019B23774C2800D7CE9E /* testTests */ = {
@@ -435,14 +435,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T4BMDHAL44;
+				DEVELOPMENT_TEAM = AL3562FU2X;
 				INFOPLIST_FILE = test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoki-ko";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.masa-iwasa";
+				PRODUCT_NAME = "SCDAO OCR";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -453,14 +453,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T4BMDHAL44;
+				DEVELOPMENT_TEAM = AL3562FU2X;
 				INFOPLIST_FILE = test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoki-ko";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.masa-iwasa";
+				PRODUCT_NAME = "SCDAO OCR";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
