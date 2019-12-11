@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EWy-pd-TbW">
-    <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EWy-pd-TbW">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,11 +12,11 @@
             <objects>
                 <viewController id="EWy-pd-TbW" customClass="ViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bOq-dN-PwZ">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCDAO OCR Scanner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jx7-xi-DDQ">
-                                <rect key="frame" x="184.5" y="267" width="465" height="60"/>
+                                <rect key="frame" x="23.5" y="12.5" width="328" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -25,7 +25,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bge-vR-phx">
-                                <rect key="frame" x="305" y="648" width="224" height="48"/>
+                                <rect key="frame" x="75.5" y="384.5" width="224" height="48"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="30"/>
                                 <state key="normal" title="Access Database">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIs-qg-RCH">
-                                <rect key="frame" x="306.5" y="573" width="221" height="48"/>
+                                <rect key="frame" x="77" y="309.5" width="221" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Scan Documents">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -44,6 +44,13 @@
                                     <segue destination="04Y-kl-RKr" kind="presentation" modalPresentationStyle="fullScreen" id="uss-HT-h67"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Logo-SCDAO" translatesAutoresizingMaskIntoConstraints="NO" id="j7c-kM-Vkw">
+                                <rect key="frame" x="87.5" y="458.5" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Kau-ky-g7i"/>
+                                    <constraint firstAttribute="height" constant="200" id="euY-rw-vxK"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.1760136943" blue="0.3667017487" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -52,6 +59,8 @@
                             <constraint firstItem="Bge-vR-phx" firstAttribute="centerY" secondItem="bOq-dN-PwZ" secondAttribute="centerY" constant="75" id="M9T-Zg-OrI"/>
                             <constraint firstItem="jx7-xi-DDQ" firstAttribute="centerX" secondItem="bOq-dN-PwZ" secondAttribute="centerX" id="Oau-Vv-5ah"/>
                             <constraint firstItem="jx7-xi-DDQ" firstAttribute="centerY" secondItem="bOq-dN-PwZ" secondAttribute="centerY" constant="-300" id="PX8-o7-8Cg"/>
+                            <constraint firstItem="j7c-kM-Vkw" firstAttribute="centerY" secondItem="bOq-dN-PwZ" secondAttribute="centerY" constant="225" id="hhO-M2-Sia"/>
+                            <constraint firstItem="j7c-kM-Vkw" firstAttribute="centerX" secondItem="bOq-dN-PwZ" secondAttribute="centerX" id="iXN-UQ-Fob"/>
                             <constraint firstItem="pIs-qg-RCH" firstAttribute="centerY" secondItem="bOq-dN-PwZ" secondAttribute="centerY" id="wNa-Lf-jGB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rVH-mz-dob"/>
@@ -62,61 +71,12 @@
             </objects>
             <point key="canvasLocation" x="856.52173913043487" y="-330.13392857142856"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="aqN-Iu-qiT">
-            <objects>
-                <viewController id="G1T-Vn-8Kn" customClass="ViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cmr-xE-OJv">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="arrow.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uQF-md-r5P">
-                                <rect key="frame" x="38" y="33.5" width="38" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3P-JU-16i">
-                                <rect key="frame" x="38" y="37" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="EWy-pd-TbW" kind="presentation" modalPresentationStyle="fullScreen" id="tZZ-38-dld"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a document folder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwl-gT-TqW">
-                                <rect key="frame" x="153.5" y="267" width="527.5" height="60"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                </variation>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQ3-Xj-wzZ">
-                                <rect key="frame" x="357.5" y="582" width="119" height="30"/>
-                                <state key="normal" title="Access Database"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.17092397810000001" blue="0.37457227710000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="UQ3-Xj-wzZ" firstAttribute="centerX" secondItem="uwl-gT-TqW" secondAttribute="centerX" id="hv4-YZ-afY"/>
-                            <constraint firstItem="uwl-gT-TqW" firstAttribute="centerY" secondItem="cmr-xE-OJv" secondAttribute="centerY" constant="-300" id="q6b-Ax-aMD"/>
-                            <constraint firstItem="uwl-gT-TqW" firstAttribute="centerX" secondItem="cmr-xE-OJv" secondAttribute="centerX" id="zgr-hL-BiR"/>
-                            <constraint firstItem="UQ3-Xj-wzZ" firstAttribute="centerY" secondItem="cmr-xE-OJv" secondAttribute="centerY" id="zqN-cA-PIo"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="5Mf-pX-UZu"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Cz5-lf-E9j"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Gf-05-STb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1686.3309352517988" y="-325.1256281407035"/>
-        </scene>
         <!--Title-->
         <scene sceneID="Lpy-t9-stX">
             <objects>
                 <viewController id="04Y-kl-RKr" customClass="ViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="67K-5Z-BuB">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="arrow.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rmR-2X-0vx">
@@ -125,7 +85,7 @@
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-lx-URn">
-                                <rect key="frame" x="322" y="723" width="190" height="48"/>
+                                <rect key="frame" x="92.5" y="309.5" width="190" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Capture Image">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -135,7 +95,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1R6-Pu-Dh6">
-                                <rect key="frame" x="322" y="773" width="190" height="48"/>
+                                <rect key="frame" x="92.5" y="359.5" width="190" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Access Library">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -145,13 +105,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waf-pW-W8W">
-                                <rect key="frame" x="341" y="973" width="152" height="48"/>
+                                <rect key="frame" x="111.5" y="559.5" width="152" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Scan Image">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="savePicture:" destination="04Y-kl-RKr" eventType="touchUpInside" id="2wi-KI-RhV"/>
+                                    <action selector="uploadWithSender:" destination="04Y-kl-RKr" eventType="touchUpInside" id="ox1-Ua-q9A"/>
                                     <segue destination="raA-Ru-Uvk" kind="presentation" identifier="showDoc" modalPresentationStyle="fullScreen" id="yvJ-8C-Auu"/>
                                 </connections>
                             </button>
@@ -163,7 +123,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="STJ-ph-bhO">
-                                <rect key="frame" x="97" y="207" width="640" height="480"/>
+                                <rect key="frame" x="27.5" y="63.5" width="320" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="grD-nF-cqQ">
                                         <variation key="heightClass=regular-widthClass=regular" constant="640"/>
@@ -174,7 +134,7 @@
                                 </constraints>
                             </imageView>
                             <pickerView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="prL-z5-xT2">
-                                <rect key="frame" x="-95" y="822" width="1024" height="150"/>
+                                <rect key="frame" x="59.5" y="408.5" width="256" height="150"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1024" id="74z-EP-6Kl">
@@ -186,7 +146,7 @@
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label shows up here" textAlignment="natural" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6x-6d-cua">
-                                <rect key="frame" x="257" y="1039.5" width="320" height="115"/>
+                                <rect key="frame" x="27.5" y="626" width="320" height="115"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="115" id="9EB-Zc-hXN"/>
                                     <constraint firstAttribute="width" constant="320" id="gKu-a2-8oY"/>
@@ -242,57 +202,44 @@
         <!--Title-->
         <scene sceneID="LGY-4t-fSZ">
             <objects>
-                <viewController id="raA-Ru-Uvk" sceneMemberID="viewController">
+                <viewController id="raA-Ru-Uvk" customClass="ViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bc4-wF-eYa">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1a-rv-oJN">
-                                <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8c5-J2-oSG">
-                                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l14-Om-Lwt">
-                                                <rect key="frame" x="417" y="597" width="0.0" height="0.0"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="arrow.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="VN8-pv-E7T">
-                                                <rect key="frame" x="51" y="47.5" width="38" height="37"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIX-BE-8YP">
-                                                <rect key="frame" x="51" y="51.5" width="30" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <segue destination="04Y-kl-RKr" kind="presentation" modalPresentationStyle="fullScreen" id="rU4-vt-9sr"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.1760136943" blue="0.3667017487" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="8c5-J2-oSG" secondAttribute="bottom" id="0Xe-Xt-2BA"/>
-                                    <constraint firstAttribute="trailing" secondItem="8c5-J2-oSG" secondAttribute="trailing" id="Gdu-Kd-lZT"/>
-                                    <constraint firstItem="8c5-J2-oSG" firstAttribute="width" secondItem="I1a-rv-oJN" secondAttribute="width" id="QHQ-e4-K7f"/>
-                                    <constraint firstItem="8c5-J2-oSG" firstAttribute="leading" secondItem="I1a-rv-oJN" secondAttribute="leading" id="aeS-Ci-uow"/>
-                                    <constraint firstItem="8c5-J2-oSG" firstAttribute="top" secondItem="I1a-rv-oJN" secondAttribute="top" id="ajk-YH-FfS"/>
-                                    <constraint firstItem="8c5-J2-oSG" firstAttribute="height" secondItem="I1a-rv-oJN" secondAttribute="height" priority="250" id="ghH-JD-Gks"/>
-                                </constraints>
-                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="df7-8l-LqU">
+                                <rect key="frame" x="38" y="43" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="04Y-kl-RKr" kind="presentation" modalPresentationStyle="fullScreen" id="OTp-XB-0QK"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="arrow.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aBe-zj-LiT">
+                                <rect key="frame" x="34" y="45.5" width="38" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khg-bf-DcL">
+                                <rect key="frame" x="50" y="200" width="275" height="267"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.17092397810000001" blue="0.37457227710000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="I1a-rv-oJN" firstAttribute="leading" secondItem="ZBJ-nM-KCU" secondAttribute="leading" id="O8V-DQ-8YK"/>
-                            <constraint firstItem="I1a-rv-oJN" firstAttribute="trailing" secondItem="ZBJ-nM-KCU" secondAttribute="trailing" id="Uzb-mM-eni"/>
-                            <constraint firstAttribute="bottom" secondItem="I1a-rv-oJN" secondAttribute="bottom" id="qN3-nN-Teb"/>
-                            <constraint firstItem="I1a-rv-oJN" firstAttribute="top" secondItem="ZBJ-nM-KCU" secondAttribute="top" id="uut-gU-Jzb"/>
+                            <constraint firstItem="Khg-bf-DcL" firstAttribute="leading" secondItem="ZBJ-nM-KCU" secondAttribute="leading" constant="50" id="4TY-kt-wql"/>
+                            <constraint firstItem="ZBJ-nM-KCU" firstAttribute="trailing" secondItem="Khg-bf-DcL" secondAttribute="trailing" constant="50" id="9Vf-QB-LoV"/>
+                            <constraint firstItem="Khg-bf-DcL" firstAttribute="centerX" secondItem="Bc4-wF-eYa" secondAttribute="centerX" id="Mhc-PM-uFY"/>
+                            <constraint firstItem="ZBJ-nM-KCU" firstAttribute="bottom" secondItem="Khg-bf-DcL" secondAttribute="bottom" constant="200" id="WpV-P0-Q6T"/>
+                            <constraint firstItem="Khg-bf-DcL" firstAttribute="centerY" secondItem="Bc4-wF-eYa" secondAttribute="centerY" id="q4m-81-nKP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZBJ-nM-KCU"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="bp3-JU-OWG"/>
+                    <connections>
+                        <outlet property="resultLabel" destination="Khg-bf-DcL" id="Ox3-iX-xA8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ge-U0-EZ6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -300,11 +247,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Logo-SCDAO" width="331" height="330"/>
         <image name="arrow.left" catalog="system" width="64" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rU4-vt-9sr"/>
-        <segue reference="ueL-6l-shf"/>
+        <segue reference="uss-HT-h67"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
 </document>
