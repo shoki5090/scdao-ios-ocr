@@ -193,11 +193,11 @@ def acc():
             print('file not in request.files')
             return redirect('/failure')
         file = request.files['file']
-        #print(file)
+        #print(file)        
         if file.filename == '':
             flash('/failure')
             print('no file name')
-            return redirect(request.url)
+            return redirect(request.url)        
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
