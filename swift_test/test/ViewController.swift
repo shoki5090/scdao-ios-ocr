@@ -89,8 +89,8 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
     
     @IBAction func openURL(_ sender: Any) {
         // check if website exists
-        let ip = "http://192.168.43.72:5000"
-        guard let url = URL(string: "\(ip)/all_cases") else {
+
+        guard let url = URL(string: "http://localhost:5000/all_cases") else {
             return
             
         }
@@ -233,13 +233,14 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
     
     func routing() -> String{
         let picked = self.pickedDocument
-        let iproute = "http://192.168.43.72:5000"
+        let iproute = "http://localhost:5000:5000"
         if picked == "Criminal Complaint" {
             return "\(iproute)/CC"
         } else if picked == "Police Department Arrest Booking Form"{
             return "\(iproute)/ABF"
         } else {
             return "\(iproute)"
+
         }
     }
     
@@ -270,7 +271,9 @@ UINavigationControllerDelegate,UIPickerViewDelegate, UIPickerViewDataSource,
         let session = URLSession(configuration: config)
 
         // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: URL(string: "http://192.168.43.72:5000/confirm_CC")!)
+
+        var urlRequest = URLRequest(url: URL(string: "http://localhost:5000/confirm_CC")!)
+
         urlRequest.httpMethod = "POST"
 
         // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
